@@ -1,13 +1,639 @@
-:root{--blue:#0b67d8;--blue-dark:#083d7a;--green:#31a844;--black:#101820;--white:#fff;--soft:#f4f8fc;--muted:#64748b;--line:#dbe5ef;--danger:#c62828;--shadow:0 12px 32px rgba(16,24,32,.12);--radius:18px}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--soft);color:var(--black);line-height:1.6;padding-top:78px;padding-bottom:74px}img{max-width:100%;display:block}a{text-decoration:none;color:inherit}button,input,textarea{font:inherit}.container{width:min(1160px,92%);margin:auto}.site-header{position:fixed;top:0;left:0;right:0;z-index:1000;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.06)}.nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:10px;font-size:2rem;font-weight:800;color:var(--blue)}.brand img{width:58px;height:58px;object-fit:contain;border-radius:50%}.nav-links{display:flex;align-items:center;gap:8px}.nav-links a{padding:10px 14px;border-radius:10px;font-weight:700}.nav-links a:hover,.nav-links a.active{background:#eaf3ff;color:var(--blue)}.menu-toggle{display:none;border:0;background:var(--blue);color:white;border-radius:10px;padding:8px 12px;font-size:1.35rem}.hero{min-height:570px;display:grid;place-items:center;background:linear-gradient(90deg,rgba(4,38,76,.93),rgba(4,38,76,.55)),url('https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1800&q=85') center/cover}.hero-content{color:#fff;max-width:720px;margin-left:8%}.eyebrow{display:inline-block;background:rgba(49,168,68,.2);border:1px solid rgba(255,255,255,.3);padding:7px 12px;border-radius:999px;font-weight:700}.hero h1{font-size:clamp(2.4rem,6vw,5.3rem);line-height:1.05;margin:.4em 0 .2em}.hero h1 span{color:#58cf67}.hero p{font-size:1.18rem;max-width:650px}.button-row,.dog-actions{display:flex;flex-wrap:wrap;gap:12px}.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:11px;padding:12px 18px;font-weight:800;cursor:pointer;transition:.2s}.btn:hover{transform:translateY(-2px)}.btn-primary{background:var(--blue);color:#fff}.btn-green{background:var(--green);color:#fff}.btn-outline{border:2px solid var(--blue);color:var(--blue);background:#fff}.btn-paypal{background:#ffc439;color:#17335c}.btn:disabled{opacity:.55;cursor:not-allowed;transform:none}.section{padding:70px 0}.section.alt{background:#fff}.section-title{text-align:center;max-width:720px;margin:0 auto 34px}.section-title h2,.page-banner h1{font-size:clamp(2rem,4vw,3.4rem);margin:0 0 10px}.section-title p{color:var(--muted)}.grid{display:grid;gap:24px}.grid-2{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:repeat(3,1fr)}.card,.info-box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.card-body,.info-box{padding:22px}.card img{width:100%;height:220px;object-fit:cover}.feature-card{padding:28px}.feature-card .icon{font-size:2.2rem}.badge{display:inline-flex;padding:5px 10px;border-radius:999px;background:#e8f7eb;color:#147726;font-size:.82rem;font-weight:800}.price{font-size:1.55rem;font-weight:900;color:var(--green);margin:12px 0}.page-banner{padding:62px 0;background:linear-gradient(135deg,var(--blue-dark),var(--blue));color:#fff}.profile-header{display:grid;grid-template-columns:1.3fr .7fr;gap:32px;align-items:center}.profile-header img{border-radius:var(--radius);height:330px;width:100%;object-fit:cover;box-shadow:var(--shadow)}.breed-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.dog-card{position:relative}.dog-card.sold{filter:grayscale(.25)}.dog-card.sold:after{content:'SOLD';position:absolute;inset:22px auto auto 22px;background:var(--danger);color:#fff;padding:8px 14px;border-radius:999px;font-weight:900;letter-spacing:.08em}.dog-card.sold .badge{background:#fee2e2;color:var(--danger)}.dog-card.sold .btn{display:none}.details-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}.info-box h2{margin-top:0}.site-footer{position:fixed;bottom:0;left:0;right:0;z-index:900;background:var(--black);color:#fff;height:74px}.footer-inner{height:74px;display:flex;align-items:center;justify-content:space-between;gap:18px}.footer-links{display:flex;gap:16px;color:#cbd5e1}.modal{position:fixed;inset:0;background:rgba(2,12,27,.72);display:none;align-items:center;justify-content:center;padding:20px;z-index:3000}.modal.open{display:flex}.modal-card{background:#fff;width:min(560px,100%);max-height:90vh;overflow:auto;border-radius:18px;padding:26px;position:relative}.modal-close{position:absolute;right:14px;top:10px;border:0;background:transparent;font-size:2rem;cursor:pointer}.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.form-group{display:flex;flex-direction:column;gap:6px}.form-group.full{grid-column:1/-1}.form-group input,.form-group textarea{border:1px solid #b9c8d8;border-radius:10px;padding:12px}.notice{padding:12px 14px;border-radius:10px;background:#eaf3ff;color:#0b4e9c;margin:12px 0}.notice.error{background:#fee2e2;color:#9b1c1c}.notice.success{background:#dcfce7;color:#166534}.contact-form{max-width:780px;margin:auto}.small{font-size:.9rem;color:var(--muted)}
-@media(max-width:900px){body{padding-top:68px}.nav{height:68px}.brand{font-size:1.6rem}.brand img{width:48px;height:48px}.menu-toggle{display:block}.nav-links{position:fixed;top:68px;left:0;right:0;background:#fff;display:none;flex-direction:column;align-items:stretch;padding:18px;border-bottom:1px solid var(--line)}.nav-links.open{display:flex}.grid-3,.breed-grid{grid-template-columns:repeat(2,1fr)}.profile-header{grid-template-columns:1fr}.site-footer{height:auto;min-height:74px}.footer-inner{height:auto;min-height:74px;padding:12px 0;flex-direction:column;justify-content:center}.footer-links{flex-wrap:wrap;justify-content:center}}
-@media(max-width:620px){body{padding-bottom:112px}.hero{min-height:500px}.hero-content{margin-left:0}.grid-2,.grid-3,.breed-grid,.details-grid,.form-grid{grid-template-columns:1fr}.form-group.full{grid-column:auto}.card img{height:210px}.button-row,.dog-actions{flex-direction:column}.btn{width:100%}.footer-inner{font-size:.86rem}}
+/* ================================================================
+   DAG WEBSITE STYLES
+   ----------------------------------------------------------------
+   QUICK EDIT GUIDE
+   1. Change site colours in :root below.
+   2. Breeders header gradient is under "BREEDERS PAGE HEADER".
+   3. Mobile layouts are at the bottom under "RESPONSIVE STYLES".
+   ================================================================ */
+
+/* ---------- COLOUR VARIABLES & GLOBAL SETTINGS ---------- */
+:root {
+  --blue: #0b67d8;
+  --blue-dark: #083d7a;
+  --green: #31a844;
+  --black: #101820;
+  --white: #fff;
+  --soft: #f4f8fc;
+  --muted: #64748b;
+  --line: #dbe5ef;
+  --danger: #c62828;
+  --shadow: 0 12px 32px rgba(16,24,32,.12);
+  --radius: 18px
+}
+
+* {
+  box-sizing: border-box
+}
+
+html {
+  scroll-behavior: smooth
+}
+
+body {
+  margin: 0;
+  font-family: Arial,Helvetica,sans-serif;
+  background: var(--soft);
+  color: var(--black);
+  line-height: 1.6;
+  padding-top: 78px;
+  padding-bottom: 74px
+}
+
+img {
+  max-width: 100%;
+  display: block
+ 
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+button,
+input,
+textarea {
+  font: inherit
+}
+
+.container {
+  width: min(1160px,92%);
+  margin: auto
+}
+
+/* ---------- STICKY NAVIGATION ---------- */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  color:white;
+  background: #071a33;
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 4px 16px rgba(0,0,0,.06)
+}
+
+.nav {
+  height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--blue)
+}
+
+.brand img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  border-radius: 50%
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px
+}
+
+.nav-links a {
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 700
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  background: #eaf3ff;
+  color: var(--blue)
+}
+
+.menu-toggle {
+  display: none;
+  border: 0;
+  background: var(--blue);
+  color: white;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 1.35rem
+}
+
+/* ---------- HOME PAGE HERO ---------- */
+.hero {
+  min-height: 570px;
+  display: grid;
+  place-items: center;
+
+  /* This image is used only by the hero on index.html. */
+  background-image:
+    linear-gradient(90deg, rgba(4, 38, 76, 0.94), rgba(4, 38, 76, 0.35)),
+    url('hero.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.hero-content {
+  color: #fff;
+  max-width: 720px;
+  margin-left: 8%
+}
+
+.eyebrow {
+  display: inline-block;
+  background: rgba(49,168,68,.2);
+  border: 1px solid rgba(255,255,255,.3);
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-weight: 700
+}
+
+.hero h1 {
+  font-size: clamp(2.4rem,6vw,5.3rem);
+  line-height: 1.05;
+  margin: .4em 0 .2em
+}
+
+.hero h1 span {
+  color: #58cf67
+}
+
+.hero p {
+  font-size: 1.18rem;
+  max-width: 650px
+}
+
+.button-row,
+.dog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 11px;
+  padding: 12px 18px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: .2s
+}
+
+.btn:hover {
+  transform: translateY(-2px)
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: #fff
+}
+
+.btn-green {
+  background: var(--green);
+  color: #fff
+}
+
+.btn-outline {
+  border: 2px solid var(--blue);
+  color: var(--blue);
+  background: #fff
+}
+
+.btn-paypal {
+  background: #ffc439;
+  color: #17335c
+}
+
+.btn:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+  transform: none
+}
+
+/* ---------- GENERAL SECTIONS & CARDS ---------- */
+.section {
+  padding: 70px 0
+}
+
+.section.alt {
+  background: #fff
+}
+
+.section-title {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 34px
+}
+
+.section-title h2,
+.page-banner h1 {
+  font-size: clamp(2rem,4vw,3.4rem);
+  margin: 0 0 10px
+  
+}
+
+.section-title p {
+  color: var(--muted)
+}
+
+.grid {
+  display: grid;
+  gap: 24px
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2,1fr)
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3,1fr)
+}
+
+.card,
+.info-box {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden
+}
+
+.card-body,
+.info-box {
+  padding: 22px
+}
+
+.card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover
+}
+
+.feature-card {
+  padding: 28px
+}
+
+.feature-card .icon {
+  font-size: 2.2rem
+}
+
+.badge {
+  display: inline-flex;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #e8f7eb;
+  color: #147726;
+  font-size: .82rem;
+  font-weight: 800
+}
+
+.price {
+  font-size: 1.55rem;
+  font-weight: 900;
+  color: var(--green);
+  margin: 12px 0
+}
+
+/* ---------- PAGE BANNERS & BREEDER PROFILES ---------- */
+.page-banner {
+  padding: 62px 0;
+   background: linear-gradient(110deg,#159447 0%,#20ad62 46%,#147cf0 54%,#0757b8 100%) !important;
+  color: #fff;
+}
+
+.profile-header {
+  display: grid;
+  grid-template-columns: 1.3fr .7fr;
+  gap: 32px;
+  align-items: center
+}
+
+.profile-header img {
+  border-radius: var(--radius);
+  height: 330px;
+  width: 100%;
+  object-fit: cover;
+  box-shadow: var(--shadow)
+}
+
+.breed-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 22px
+}
+
+.dog-card {
+  position: relative
+}
+
+.dog-card.sold {
+  filter: grayscale(.25)
+}
+
+.dog-card.sold:after {
+  content: 'SOLD';
+  position: absolute;
+  inset: 22px auto auto 22px;
+  background: var(--danger);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 900;
+  letter-spacing: .08em
+}
+
+.dog-card.sold .badge {
+  background: #fee2e2;
+  color: var(--danger)
+}
+
+.dog-card.sold .btn {
+  display: none
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 22px
+}
+
+.info-box h2 {
+  margin-top: 0
+}
+
+/* ---------- STICKY FOOTER ---------- */
+.site-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background: var(--black);
+  color: #fff;
+  height: 74px
+}
+
+.footer-inner {
+  height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px
+}
+
+.footer-links {
+  display: flex;
+  gap: 16px;
+  color: #cbd5e1
+}
+
+/* ---------- BID & PAYMENT MODALS ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(2,12,27,.72);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 3000
+}
+
+.modal.open {
+  display: flex
+}
+
+.modal-card {
+  background: #fff;
+  width: min(560px,100%);
+  max-height: 90vh;
+  overflow: auto;
+  border-radius: 18px;
+  padding: 26px;
+  position: relative
+}
+
+.modal-close {
+  position: absolute;
+  right: 14px;
+  top: 10px;
+  border: 0;
+  background: transparent;
+  font-size: 2rem;
+  cursor: pointer
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 16px
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px
+}
+
+.form-group.full {
+  grid-column: 1/-1
+}
+
+.form-group input,
+.form-group textarea {
+  border: 1px solid #b9c8d8;
+  border-radius: 10px;
+  padding: 12px
+}
+
+.notice {
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #eaf3ff;
+  color: #0b4e9c;
+  margin: 12px 0
+}
+
+.notice.error {
+  background: #fee2e2;
+  color: #9b1c1c
+}
+
+.notice.success {
+  background: #dcfce7;
+  color: #166534
+}
+
+.contact-form {
+  max-width: 780px;
+  margin: auto
+}
+
+.small {
+  font-size: .9rem;
+  color: var(--muted)
+}
+
+@media(max-width:900px) {
+  body {
+    padding-top: 68px
+  }
+  .nav {
+    height: 68px
+  }
+  .brand {
+    font-size: 1.6rem
+  }
+  .brand img {
+    width: 48px;
+    height: 48px
+  }
+  .menu-toggle {
+    display: block
+  }
+  .nav-links {
+    position: fixed;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: white;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 18px;
+    border-bottom: 1px solid var(--line)
+  }
+  .nav-links.open {
+    display: flex
+  }
+  .grid-3,
+.breed-grid {
+    grid-template-columns: repeat(2,1fr)
+  }
+  .profile-header {
+    grid-template-columns: 1fr
+  }
+  .site-footer {
+    height: auto;
+    min-height: 74px
+  }
+  .footer-inner {
+    height: auto;
+    min-height: 74px;
+    padding: 12px 0;
+    flex-direction: column;
+    justify-content: center
+  }
+  .footer-links {
+    flex-wrap: wrap;
+    justify-content: center
+  }
+}
+
+@media(max-width:620px) {
+  body {
+    padding-bottom: 112px
+  }
+  .hero {
+    min-height: 500px
+  }
+  .hero-content {
+    margin-left: 0
+  }
+  .grid-2,
+.grid-3,
+.breed-grid,
+.details-grid,
+.form-grid {
+    grid-template-columns: 1fr
+  }
+  .form-group.full {
+    grid-column: auto
+  }
+  .card img {
+    height: 210px
+  }
+  .button-row,
+.dog-actions {
+    flex-direction: column
+  }
+  .btn {
+    width: 100%
+  }
+  .footer-inner {
+    font-size: .86rem
+  }
+}
 
 /* Static HTML/CSS/JS payment demo additions */
-.payment-link{display:flex;width:100%;justify-content:center;margin-bottom:.75rem}
-.demo-payment{width:100%;margin-bottom:.5rem}
-.payment-help{font-size:.82rem;color:#5f6b7a;line-height:1.5;margin:0}
-body.modal-open{overflow:hidden}
-.dog-card.sold{position:relative;filter:grayscale(.22);opacity:.82}
-.dog-card.sold::after{content:"SOLD";position:absolute;top:1rem;right:1rem;background:#071a33;color:#fff;padding:.55rem .8rem;border-radius:999px;font-weight:800;letter-spacing:.08em;box-shadow:0 8px 24px rgba(0,0,0,.2)}
-.dog-card button:disabled{cursor:not-allowed;opacity:.58}
+.payment-link {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: .75rem
+}
+
+.demo-payment {
+  width: 100%;
+  margin-bottom: .5rem
+}
+
+.payment-help {
+  font-size: .82rem;
+  color: #5f6b7a;
+  line-height: 1.5;
+  margin: 0
+}
+
+body.modal-open {
+  overflow: hidden
+}
+
+.dog-card.sold {
+  position: relative;
+  filter: grayscale(.22);
+  opacity: .82
+}
+
+.dog-card.sold::after {
+  content: "SOLD";
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #071a33;
+  color: #fff;
+  padding: .55rem .8rem;
+  border-radius: 999px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  box-shadow: 0 8px 24px rgba(0,0,0,.2)
+}
+
+.dog-card button:disabled {
+  cursor: not-allowed;
+  opacity: .58
+}
+
+/* Breeders page: clearly visible green-and-blue header */
+/* ---------- BREEDERS PAGE HEADER: GREEN + BLUE ---------- */
+.page-banner.breeders-banner {
+  background: linear-gradient(110deg,#159447 0%,#20ad62 46%,#147cf0 54%,#0757b8 100%) !important;
+  color: #fff;
+}
+
+.page-banner.breeders-banner h1,
+.page-banner.breeders-banner p {
+  color: #fff;
+}

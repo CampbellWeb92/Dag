@@ -1,0 +1,77 @@
+DAG WEBSITE — EASY EDITING GUIDE
+================================
+
+START THE WEBSITE
+-----------------
+Open index.html in a web browser.
+
+MAIN FILES
+----------
+assets/styles.css
+  Controls all colours, spacing, cards, navigation, footer and mobile layouts.
+
+assets/components.js
+  Controls the shared navbar and footer on every page.
+
+assets/script.js
+  Controls bids, payment demonstration and Sold labels.
+
+assets/logo.png
+  The white dog logo used in the navbar.
+
+CHANGE THE HOME PAGE HERO IMAGE
+-------------------------------
+The main-page hero uses:
+
+  assets/hero.jpg
+
+Replace that file with another image using the same filename.
+No other page uses this hero image.
+
+CHANGE THE WEBSITE COLOURS
+--------------------------
+Open assets/styles.css and edit the variables inside :root near the top:
+
+  --blue
+  --blue-dark
+  --green
+  --black
+  --white
+
+CHANGE THE BREEDERS HEADER
+--------------------------
+Search styles.css for:
+
+  BREEDERS PAGE HEADER: GREEN + BLUE
+
+Then edit the colours in the linear-gradient.
+
+CHANGE NAVIGATION OR FOOTER LINKS
+---------------------------------
+Open assets/components.js. The navigation links are stored in the
+navigationLinks list near the top.
+
+CHANGE PAYPAL USERNAME
+----------------------
+Open assets/script.js and change:
+
+  const PAYPAL_USERNAME = 'REPLACE';
+
+to the breeder's real PayPal.Me username.
+
+EDIT BREEDER OR DOG DETAILS
+---------------------------
+Open the relevant HTML file:
+
+  breeders.html
+  breeder-blue-sky.html
+  breeder-green-valley.html
+  breeder-coastal.html
+
+Each dog is inside an <article class="card dog-card"> block. Copy a complete
+article block to create another listing, and make sure every data-dog-id is unique.
+
+IMPORTANT PAYMENT NOTE
+----------------------
+The current Sold button is a browser-only demonstration using localStorage.
+A real automatic Sold status needs a secure server and verified PayPal webhook.
