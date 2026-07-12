@@ -1,230 +1,96 @@
-/**
- * Dag website interactions
- * ------------------------
- * This file controls:
- *  - Saved Sold labels
- *  - Bid form modal
- *  - PayPal demonstration modal
- *
- * IMPORTANT: localStorage is only a browser demonstration. A real payment
- * must be verified by a secure server before a dog is marked as sold.
- */
-
-const STORAGE_KEYS = {
-  soldDogs: 'dagSoldDogs',
-  bids: 'dagBids'
-};
+'use strict';
 
 const PAYPAL_USERNAME = 'REPLACE';
 
-let selectedDog = null;
-
-function formatMoney(value) {
-  return new Intl.NumberFormat('en-ZA', {
-    style: 'currency',
-    currency: 'ZAR',
-    maximumFractionDigits: 0
-  }).format(value);
-}
-
-// ---------- Sold status ----------
-
-function getSoldDogIds() {
-  return JSON.parse(localStorage.getItem(STORAGE_KEYS.soldDogs) || '[]');
-}
-
-function saveSoldDogId(dogId) {
-  const soldDogIds = new Set(getSoldDogIds());
-  soldDogIds.add(dogId);
-
-  localStorage.setItem(
-    STORAGE_KEYS.soldDogs,
-    JSON.stringify([...soldDogIds])
-  );
-}
-
-function markDogCardAsSold(card) {
-  card.classList.add('sold');
-
-  const availabilityBadge = card.querySelector('.badge');
-  if (availabilityBadge) availabilityBadge.textContent = 'Sold';
-
-  card.querySelectorAll('button').forEach((button) => {
-    button.disabled = true;
-
-    if (button.matches('[data-buy]')) {
-      button.textContent = 'Sold';
-    }
-  });
-}
-
-function applySavedSoldStatuses() {
-  const soldDogIds = new Set(getSoldDogIds());
-
-  document.querySelectorAll('[data-dog-id]').forEach((card) => {
-    if (soldDogIds.has(card.dataset.dogId)) {
-      markDogCardAsSold(card);
-    }
-  });
-}
-
-// ---------- Modal controls ----------
-
-function openModal(modalId) {
-  const modal = document.getElementById(modalId);
+function openModal(modal) {
   if (!modal) return;
-
-  modal.classList.add('open');
+  modal.classList.add('show');
+  modal.setAttribute('aria-hidden', 'false');
   document.body.classList.add('modal-open');
+  const focusable = modal.querySelector('button, input, textarea, a');
+  if (focusable) focusable.focus();
 }
 
-function closeAllModals() {
-  document.querySelectorAll('.modal').forEach((modal) => {
-    modal.classList.remove('open');
-  });
-
+function closeModal(modal) {
+  if (!modal) return;
+  modal.classList.remove('show');
+  modal.setAttribute('aria-hidden', 'true');
   document.body.classList.remove('modal-open');
 }
 
-// ---------- Bid form ----------
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.modal').forEach(modal => modal.setAttribute('aria-hidden', 'true'));
 
-function prepareBidForm(button) {
-  selectedDog = {
-    id: button.dataset.bid,
-    name: button.dataset.name,
-    price: Number(button.dataset.price)
-  };
-
-  document.getElementById('bidDogId').value = selectedDog.id;
-  document.getElementById('bidDog').value = selectedDog.name;
-  document.getElementById('bidAmount').value = selectedDog.price;
-
-  openModal('bidModal');
-}
-
-function saveBid(form) {
-  const savedBids = JSON.parse(
-    localStorage.getItem(STORAGE_KEYS.bids) || '[]'
-  );
-
-  savedBids.push({
-    dogId: form.bidDogId.value,
-    dog: form.bidDog.value,
-    name: form.bidName.value,
-    email: form.bidEmail.value,
-    amount: Number(form.bidAmount.value),
-    message: form.bidMessage.value,
-    submittedAt: new Date().toISOString()
+  document.querySelectorAll('[data-close-modal]').forEach(button => {
+    button.addEventListener('click', () => closeModal(button.closest('.modal')));
   });
 
-  localStorage.setItem(STORAGE_KEYS.bids, JSON.stringify(savedBids));
-}
-
-// ---------- Payment demonstration ----------
-
-function preparePayment(button) {
-  selectedDog = {
-    id: button.dataset.buy,
-    name: button.dataset.name,
-    price: Number(button.dataset.price)
-  };
-
-  buildPaymentOptions(selectedDog);
-  openModal('paymentModal');
-}
-
-function buildPaymentOptions(dog) {
-  const paymentTitle = document.getElementById('paymentTitle');
-  const paymentMessage = document.getElementById('paymentMessage');
-  const paypalButtons = document.getElementById('paypalButtons');
-
-  paymentTitle.textContent = `Buy ${dog.name} — ${formatMoney(dog.price)}`;
-  paymentMessage.className = 'notice';
-  paymentMessage.textContent =
-    'Replace the PayPal username in script.js before publishing.';
-
-  paypalButtons.innerHTML = `
-    <a
-      class="btn btn-paypal payment-link"
-      href="https://paypal.me/${PAYPAL_USERNAME}/${dog.price}"
-      target="_blank"
-      rel="noopener"
-    >
-      Continue to PayPal
-    </a>
-
-    <button class="btn btn-green demo-payment" type="button">
-      Demo: Confirm Successful Payment
-    </button>
-
-    <p class="payment-help">
-      This green button demonstrates how the Sold status works in this
-      HTML, CSS and JavaScript version.
-    </p>
-  `;
-
-  const confirmationButton = paypalButtons.querySelector('.demo-payment');
-
-  confirmationButton.addEventListener('click', () => {
-    confirmDemonstrationPayment(dog, paymentMessage, paypalButtons);
+  document.querySelectorAll('.modal').forEach(modal => {
+    modal.addEventListener('click', event => { if (event.target === modal) closeModal(modal); });
   });
-}
 
-function confirmDemonstrationPayment(dog, messageBox, controlsContainer) {
-  saveSoldDogId(dog.id);
-
-  const dogCard = document.querySelector(`[data-dog-id="${dog.id}"]`);
-  if (dogCard) markDogCardAsSold(dogCard);
-
-  messageBox.className = 'notice success';
-  messageBox.textContent =
-    'Payment recorded. This dog is now marked as Sold on this browser.';
-
-  controlsContainer.querySelectorAll('a, button').forEach((control) => {
-    control.disabled = true;
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') document.querySelectorAll('.modal.show').forEach(closeModal);
   });
-}
 
-// ---------- Event listeners ----------
+  const bidModal = document.getElementById('bidModal');
+  const bidForm = document.getElementById('bidForm');
 
-function handlePageClick(event) {
-  const clickedModalBackground = event.target.classList.contains('modal');
-  const clickedCloseButton = event.target.matches('[data-close-modal]');
+  document.querySelectorAll('[data-bid]').forEach(button => {
+    button.addEventListener('click', () => {
+      const dogId = button.dataset.bid;
+      const dogName = button.dataset.name;
+      const price = Number(button.dataset.price || 0);
+      document.getElementById('bidDogId').value = dogId;
+      document.getElementById('bidDog').value = dogName;
+      document.getElementById('bidAmount').value = price;
+      document.getElementById('bidAmount').min = Math.max(1, Math.floor(price * 0.5));
+      document.getElementById('bidMessageBox').textContent = '';
+      openModal(bidModal);
+    });
+  });
 
-  if (clickedModalBackground || clickedCloseButton) {
-    closeAllModals();
-    return;
+  if (bidForm) {
+    bidForm.addEventListener('submit', event => {
+      event.preventDefault();
+      document.getElementById('bidMessageBox').textContent = 'Thank you. Your bid has been recorded in this demonstration.';
+      bidForm.reset();
+      setTimeout(() => closeModal(bidModal), 1400);
+    });
   }
 
-  const bidButton = event.target.closest('[data-bid]');
-  if (bidButton) {
-    prepareBidForm(bidButton);
-    return;
-  }
+  const paymentModal = document.getElementById('paymentModal');
+  document.querySelectorAll('[data-buy]').forEach(button => {
+    const id = button.dataset.buy;
+    const card = button.closest('[data-dog-id]');
+    if (localStorage.getItem(`dag-sold-${id}`) === 'true') markSold(card);
 
-  const buyButton = event.target.closest('[data-buy]');
-  if (buyButton) {
-    preparePayment(buyButton);
-  }
-}
+    button.addEventListener('click', () => {
+      const name = button.dataset.name;
+      const price = Number(button.dataset.price || 0);
+      document.getElementById('paymentTitle').textContent = `Pay for ${name}`;
+      document.getElementById('paymentMessage').textContent = `Secure payment amount: R${price.toLocaleString('en-ZA')}`;
+      document.getElementById('paypalButtons').innerHTML = `
+        <a class="btn btn-paypal payment-link" href="https://paypal.me/${PAYPAL_USERNAME}/${price}" target="_blank" rel="noopener">Continue to PayPal</a>
+        <button class="btn btn-green demo-confirm" type="button">Demo: Confirm Successful Payment</button>`;
+      openModal(paymentModal);
+      document.querySelector('.demo-confirm').addEventListener('click', () => {
+        localStorage.setItem(`dag-sold-${id}`, 'true');
+        markSold(card);
+        document.getElementById('paymentMessage').textContent = 'Payment confirmed in this demonstration. The dog is now marked Sold.';
+        document.getElementById('paypalButtons').innerHTML = '';
+      });
+    });
+  });
+});
 
-document.addEventListener('click', handlePageClick);
-
-const bidForm = document.getElementById('bidForm');
-
-if (bidForm) {
-  bidForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    saveBid(event.currentTarget);
-
-    const messageBox = document.getElementById('bidMessageBox');
-    messageBox.className = 'notice success';
-    messageBox.textContent =
-      'Your bid has been saved. The breeder can contact you using the details provided.';
-
-    event.currentTarget.reset();
+function markSold(card) {
+  if (!card) return;
+  card.classList.add('sold');
+  const badge = card.querySelector('.badge');
+  if (badge) badge.textContent = 'Sold';
+  card.querySelectorAll('button').forEach(button => {
+    button.disabled = true;
+    button.textContent = 'Sold';
   });
 }
-
-applySavedSoldStatuses();
